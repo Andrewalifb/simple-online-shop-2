@@ -1,0 +1,147 @@
+openapi: "3.0.0"
+info:
+  version: "1.0.0"
+  title: "Online Shop API"
+  description: "This is a simple online shop built with PHP using the CodeIgniter 3.1.13 framework and MySQL."
+servers:
+  - url: "http://localhost:8080/index.php"
+paths:
+  /UserController/register:
+    post:
+      summary: "Register a new user"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                email:
+                  type: "string"
+                phone:
+                  type: "string"
+      responses:
+        '201':
+          description: "User created successfully"
+        '400':
+          description: "No data sent"
+        '500':
+          description: "Server error"
+  /ItemController/create:
+    post:
+      summary: "Add a new item"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+                price:
+                  type: "number"
+      responses:
+        '201':
+          description: "Item created successfully"
+        '400':
+          description: "No data sent"
+        '500':
+          description: "Server error"
+  /ItemController/update/{id}:
+    put:
+      summary: "Update an existing item"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+                price:
+                  type: "number"
+      responses:
+        '200':
+          description: "Item updated successfully"
+        '400':
+          description: "No data sent"
+        '500':
+          description: "Server error"
+  /CartController/create:
+    post:
+      summary: "Create a new cart"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                user_id:
+                  type: "integer"
+      responses:
+        '201':
+          description: "Cart created successfully"
+        '400':
+          description: "No data sent"
+        '500':
+          description: "Server error"
+  /CartController/checkout/{id}:
+    put:
+      summary: "Checkout a cart"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        '200':
+          description: "Cart checked out successfully"
+        '500':
+          description: "Server error"
+  /CartController/history/{userId}:
+    get:
+      summary: "Get a user's shopping history"
+      parameters:
+        - name: "userId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        '200':
+          description: "Shopping history retrieved successfully"
+        '500':
+          description: "Server error"
+  /CartItemController/create:
+    post:
+      summary: "Add an item to a cart"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                cart_id:
+                  type: "integer"
+                item_id:
+                  type: "integer"
+                quantity:
+                  type: "integer"
+      responses:
+        '201':
+          description: "Item added to cart successfully"
+        '400':
+          description: "No data sent"
+        '500':
+          description: "Server error"
