@@ -73,12 +73,90 @@ CREATE TABLE `cart_items` (
 | `/index.php/cart/history/{id}`| GET      | Get a user's shopping history      |
 | `/index.php/cartitem/create`| POST       | Add an item to a cart              |
 
-## Running the Application
+## Using the Endpoints
+
+# User Registration
+
+- **Endpoint URL:** `http://localhost:8080/index.php/UserController/register`
+- **HTTP Method:** POST
+- **JSON Request Body:**
+
+```json
+{
+    "email": "user@example.com",
+    "phone": "1234567890"
+}
+```
+
+# Item Creation
+
+- **Endpoint URL:** `http://localhost:8080/index.php/ItemController/create`
+- **HTTP Method:** POST
+- **JSON Request Body:**
+
+```json
+{
+    "name": "Item Name",
+    "price": 100.00
+}
+```
+
+# Item Update
+
+Endpoint URL: http://localhost:8080/index.php/ItemController/update/{id} (Replace {id} with the actual item ID)
+- **Endpoint URL:** `http://localhost:8080/index.php/ItemController/update/{id}` (Replace `{id}` with the actual item ID)
+- **HTTP Method:** PUT
+- **JSON Request Body:**
+
+```json
+{
+    "name": "New Item Name",
+    "price": 150.00
+}
+```
+
+# Cart Creation
+
+- **Endpoint URL:** `http://localhost:8080/index.php/CartController/create`
+- **HTTP Method:** POST
+- **JSON Request Body:**
+
+```json
+{
+    "user_id": 1
+}
+```
+
+# Cart Checkout
+
+- **Endpoint URL:** `http://localhost:8080/index.php/CartController/checkout/{id}` (Replace `{id}` with the actual cart ID)
+- **HTTP Method:** PUT
+
+# Shopping History
+
+- **Endpoint URL:** `http://localhost:8080/index.php/CartController/history/{userId}` (Replace `{userId}` with the actual user ID)
+- **HTTP Method:** GET
+
+# Add Item to Cart
+
+- **Endpoint URL:** `http://localhost:8080/index.php/CartItemController/create`
+- **HTTP Method:** POST
+- **JSON Request Body:**
+
+```json
+{
+    "cart_id": 1,
+    "item_id": 1,
+    "quantity": 2
+}
+```
+
+# Running the Application
 
 To start the application, navigate to the project directory and run `php -S localhost:8080`. Then, open your web browser and navigate to [http://localhost:8080](http://localhost:8080).
 
 Please note that you need to have PHP installed on your machine to run the server. If you don’t have PHP installed, you can use XAMPP or any other local server environment. If you’re using XAMPP, place the project folder in the `htdocs` directory of your XAMPP installation.
 
-## Contributing
+# Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
